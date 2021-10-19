@@ -130,9 +130,11 @@ getAverageBySubject(subject) { // получение среднего арифм
 getAverage() {
   let sumAverage = 0;
   let subjectsCount = 0; // начальное значение счётчика - количества предметов
-    for (let prop in Student) { //перебор всех свойств класса Student
-      if ((prop !== this.name) || (prop !== this.gender) || (prop !== this.age)) sumAverage += this.getAverageBySubject(prop); // в вычислении среднего значения участвуют только свойства, описывающие учебные предметы
-      subjectsCount += 1;
+    for (let prop in this) { //перебор всех свойств класса Student
+      if ((prop !== 'name') && (prop !== 'gender') && (prop !== 'age')) { // в вычислении среднего значения участвуют только свойства, описывающие учебные предметы
+          sumAverage += this.getAverageBySubject(prop); 
+          subjectsCount += 1;
+      }
   }
   return Number((sumAverage/subjectsCount).toFixed(2)); // вычисление средней оценки по всем предметам, преобразование в число с обрезкой до 2го знака
 
